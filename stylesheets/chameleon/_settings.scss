@@ -1,0 +1,14 @@
+// ----------------------------------------------------------------------------
+// Settings
+
+// The themes list, normally you would specify `$themes` before importing
+// chameleon.
+//
+// Each theme is a list, consisting of two items: the theme-name {string} (this
+// is what you would apply as a class to the container or body element) and the
+// colors {list | color}, where the colors are ordered: primary theme color,
+// secondary theme color, tertiary theme color etc.
+//
+$themes: ("red",   (#FF0000, #F13333)),
+		 ("green", (#00FF00, #33F133)),
+		 ("blue",  (#0000FF, #3333F1)) !default;

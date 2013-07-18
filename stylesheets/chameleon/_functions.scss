@@ -1,0 +1,73 @@
+// ----------------------------------------------------------------------------
+// Sass List Functions
+
+// Function fail-safe-nth
+// Fail-safe implementation of `nth`. Gets the nth item in the list or returns
+// null.
+//
+// @param $list {list} List of items
+// @param $index {number} Index of the item to lookup
+//
+// @return {literal} The desired item
+//
+@function fail-safe-nth($list, $index: 1) {
+
+	// Check if $list is a list, otherwise we can't look up indexes in it.
+	@if type-of($list) != "list" {
+		@warn "$list should be a list";
+		@return null;
+	}
+
+	// Check if $index is a positive number, otherwise we can't use it as
+	// an index.
+	@if type-of($index) != "number" or $index < 1 {
+		@warn "$index should be a number greater than or equal to 1";
+		@return null;
+	}
+
+	// Only try to look up the item if the index is in the list
+	@if $index <= length($list) {
+		@return nth($list, $index);
+	} @else {
+		@warn "List index is #{$index} but the list of theme list is only #{length($list)} items long.";
+		@return null;
+	}
+}
+
+// ----------------------------------------------------------------------------
+// Theme functions
+
+// Function get-theme-by-name
+// Returns a theme by its name.
+//
+// @param $name {string} The theme name
+//
+// @returns {list} The desired theme
+//
+@function get-theme-by-name($name) {
+	@each $theme in $themes {
+		@if index($theme, $name) != false {
+			@return $theme;
+		}
+	}
+
+	@return null;
+}
+
+// Function theme-color
+// Returns the desired color (primary, secondary etc.) of the specified theme.
+//
+// @param $theme {string} Theme name as used in HTML
+// @param $index {number} Desired color by ordinal number (primary color is 1, secondary color
+//   is 2, tertiary color is 3 etc.)
+//
+// @return {color} The desired color
+//
+@function theme-color($theme, $index) {
+	@if index($themes, $theme) == false {
+		@warn "Theme `#{$theme}` was not found in the list of themes.";
+		@return null;
+	}
+
+	@return fail-safe-nth(index($themes, $theme), $index);
+}
