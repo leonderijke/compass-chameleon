@@ -57,6 +57,20 @@ This will output:
 }
 ```
 
+In your HTML you'd add the theme name class to the `body` element to theme an entire page, or to a `div` or `section` or so to skin a component:
+
+```html
+<!-- Add the theme name class to the body element to theme an entire page: -->
+<body class="red">
+  <!-- content -->
+</body>
+
+<!-- Or to a container to skin a component: -->
+<section class="blue">
+  <!-- content -->
+</section>
+```
+
 ## Mixins
 
 Chameleon comes with a number of mixins for your theming pleasures:
