@@ -57,17 +57,20 @@
 // Function theme-color
 // Returns the desired color (primary, secondary etc.) of the specified theme.
 //
-// @param $theme {string} Theme name as used in HTML
-// @param $index {number} Desired color by ordinal number (primary color is 1, secondary color
+// @param $theme {list} The theme
+// @param $color {number} Desired color by ordinal number (primary color is 1, secondary color
 //   is 2, tertiary color is 3 etc.)
 //
 // @return {color} The desired color
 //
-@function theme-color($theme, $index) {
-	@if index($themes, $theme) == false {
+@function theme-color($theme, $color) {
+	$index: index($themes, $theme);
+	@if $index == false {
 		@warn "Theme `#{$theme}` was not found in the list of themes.";
 		@return null;
 	}
 
-	@return fail-safe-nth(index($themes, $theme), $index);
+	$colors: fail-safe-nth(nth($themes, $index), 2);
+
+	@return fail-safe-nth($colors, $color);
 }
