@@ -5,9 +5,10 @@
 ### Functions ------ */
 /*  - [function] fail-safe-nth (8 assertions, 8 passed, 0 failed) */
 /*  - [function] get-theme-by-name (2 assertions, 2 passed, 0 failed) */
-/*  - [function] theme-color (2 assertions, 2 passed, 0 failed) */
+/*  - [function] theme-colors (1 assertions, 1 passed, 0 failed) */
+/*  - [function] theme-color (1 assertions, 1 passed, 0 failed) */
 /*  
     Summary:
-    - 3 Tests
-    - 3 Passed
+    - 4 Tests
+    - 4 Passed
     - 0 Failed */

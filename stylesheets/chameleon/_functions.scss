@@ -54,6 +54,16 @@
 	@return null;
 }
 
+// Function theme-colors
+// Returns the colors for a theme
+//
+// @param $theme {list} The theme to get the colors for
+//
+// @returns {list} The colors
+@function theme-colors($theme) {
+	@return fail-safe-nth($theme, 2);
+}
+
 // Function theme-color
 // Returns the desired color (primary, secondary etc.) of the specified theme.
 //
@@ -64,13 +74,7 @@
 // @return {color} The desired color
 //
 @function theme-color($theme, $color) {
-	$index: index($themes, $theme);
-	@if $index == false {
-		@warn "Theme `#{$theme}` was not found in the list of themes.";
-		@return null;
-	}
-
-	$colors: fail-safe-nth(nth($themes, $index), 2);
+	$colors: theme-colors($theme);
 
 	@return fail-safe-nth($colors, $color);
 }

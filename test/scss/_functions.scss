@@ -77,19 +77,24 @@
 			"'red' should return red theme");
 	}
 
+	// Theme colors
+	// ------------
+	@include test('[function] theme-colors') {
+		$red: ("red", (#FF0000, #F13333));
+
+		// "red" theme colors
+		$assert: theme-colors($red);
+		$expect: (#FF0000, #F13333);
+		@include assert-equal($assert, $expect,
+			"'red' should return the red theme colors");
+	}
+
 	// Theme color
 	// -----------
 	@include test('[function] theme-color') {
-		$red: get-theme-by-name('red');
-		$pink: ("pink", (pink, deeppink));
+		$red: ("red", (#FF0000, #F13333));
 
-		// "pink" theme doesn't exist
-		$assert: theme-color($pink, 1);
-		$expect: null;
-		@include assert-equal($assert, $expect,
-			"'pink' should return null");
-
-		// "red" does exist
+		// "red" primary theme color
 		$assert: theme-color($red, 1);
 		$expect: #FF0000;
 		@include assert-equal($assert, $expect,
