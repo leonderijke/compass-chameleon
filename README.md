@@ -9,7 +9,11 @@ reuse the general styles and only change colors based on the theme.
 
 ## Installation
 
-TODO: Release as gem and provide installation instructions.
+Install Chameleon by:
+
+```bash
+$ gem install compass-chameleon
+```
 
 ## Usage
 
