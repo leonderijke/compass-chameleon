@@ -1,0 +1,98 @@
+// Functions tests
+// ===============
+
+@include test-module('Functions') {
+
+	// Fail safe nth
+	// -------------
+
+	@include test('[function] fail-safe-nth') {
+		$string: "abcde";
+		$list-size-0: compact();
+		$list-size-1: compact(1);
+		$list-size-2: (1, 2);
+
+		// "abcde" is a string, not a list
+		$assert: fail-safe-nth($string);
+		$expect: null;
+		@include assert-equal($assert, $expect,
+			"String as list should return null");
+
+		// compact() is a list with 0 items
+		$assert: fail-safe-nth($list-size-0);
+		$expect: null;
+		@include assert-equal($assert, $expect,
+			"List size 0 should return null");
+
+		// compact(1) is a list with 1 item
+		$assert: fail-safe-nth($list-size-1);
+		$expect: 1;
+		@include assert-equal($assert, $expect,
+			"List size 1 should return 1");
+
+		// "abcde" is a string, not a number
+		$assert: fail-safe-nth($list-size-2, $string);
+		$expect: null;
+		@include assert-equal($assert, $expect,
+			"String as index should return null");
+
+		// 0 is < 1
+		$assert: fail-safe-nth($list-size-1, 0);
+		$expect: null;
+		@include assert-equal($assert, $expect,
+			"Index 0 should return null");
+
+		// -1 is < 1
+		$assert: fail-safe-nth($list-size-1, -1);
+		$expect: null;
+		@include assert-equal($assert, $expect,
+			"Index -1 should return null");
+
+		// 2 is > 1
+		$assert: fail-safe-nth($list-size-1, 2);
+		$expect: null;
+		@include assert-equal($assert, $expect,
+			"Index 2, list length 1 should return null");
+
+		// 2 is > 1
+		$assert: fail-safe-nth($list-size-2, 2);
+		$expect: 2;
+		@include assert-equal($assert, $expect,
+			"Index 2, list length 2 should return 2");
+	}
+
+	// Get theme by name
+	// -----------------
+	@include test('[function] get-theme-by-name') {
+		// "pink" doesn't exist
+		$assert: get-theme-by-name('pink');
+		$expect: null;
+		@include assert-equal($assert, $expect,
+			"'pink' should return null");
+
+		// "red" does exist
+		$assert: get-theme-by-name('red');
+		$expect: ("red", (#FF0000, #F13333));
+		@include assert-equal($assert, $expect,
+			"'red' should return red theme");
+	}
+
+	// Theme color
+	// -----------
+	@include test('[function] theme-color') {
+		$red: get-theme-by-name('red');
+		$pink: ("pink", (pink, deeppink));
+
+		// "pink" theme doesn't exist
+		$assert: theme-color($pink, 1);
+		$expect: null;
+		@include assert-equal($assert, $expect,
+			"'pink' should return null");
+
+		// "red" does exist
+		$assert: theme-color($red, 1);
+		$expect: #FF0000;
+		@include assert-equal($assert, $expect,
+			"'red' should return red");
+	}
+}
