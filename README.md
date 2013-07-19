@@ -151,6 +151,18 @@ Returns a theme by its name. Takes a theme name.
 }
 ```
 
+### `theme-colors`
+
+Returns a list of the colors of the theme. Takes a theme.
+
+```scss
+  // First, look up the theme named 'red'
+  $theme: get-theme-by-name("red");
+  // Next, get the theme colors
+  $colors: theme-colors($theme);
+  // Then, use $colors in a for loop or whatever
+```
+
 ### `theme-color`
 
 Returns the desired color (primary, secondary etc.) of the specified theme. Takes a theme and the desired color by ordinal number (primary color is 1, secondary color is 2, tertiary color is 3 etc.).
