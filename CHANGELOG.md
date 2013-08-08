@@ -1,4 +1,4 @@
-# 0.3.0 (Unreleased)
+# 0.3.0 (2013-08-08)
 
 * Add `themes` mixin to output theme style rules on the global level
 

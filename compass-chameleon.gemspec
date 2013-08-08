@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   # Release Specific Information
-  s.version = "0.2.0"
-  s.date = "2013-07-19"
+  s.version = "0.3.0"
+  s.date = "2013-08-08"
 
   # Gem Details
   s.name = "compass-chameleon"
