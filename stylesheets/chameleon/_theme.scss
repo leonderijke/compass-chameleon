@@ -1,6 +1,17 @@
 // ----------------------------------------------------------------------------
 // Theme
 
+// Mixin themes
+// Adds a global style rule for each theme, containing the themed properties.
+//
+// @param $properties {list | string} One or more properties to theme
+//
+@mixin themes($properties...) {
+	@each $theme in $themes {
+		@include properties-for-theme($theme, $properties, true);
+	}
+}
+
 // Mixin themed
 // Adds a style rule for each theme, containing the themed properties.
 //
@@ -16,13 +27,14 @@
 // Adds a style rule for the given theme, containing the themed properties.
 //
 // @param $theme {list} The theme
-// @param $propeties {list | string} One or more properties to theme
+// @param $properties {list | string} One or more properties to theme
+// @param $global {boolean} Whether to output the selector globally or not
 //
-@mixin properties-for-theme($theme, $properties) {
+@mixin properties-for-theme($theme, $properties, $global: false) {
 	$theme-name: fail-safe-nth($theme, 1);
 	$theme-colors: fail-safe-nth($theme, 2);
 
-	.#{$theme-name} & {
+	.#{$theme-name} #{if($global, '', '&')} {
 		@for $i from 1 through length($properties) {
 			@if fail-safe-nth($theme-colors, $i) != null {
 				#{nth($properties, $i)}: fail-safe-nth($theme-colors, $i);

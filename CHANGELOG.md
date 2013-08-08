@@ -1,3 +1,7 @@
+# 0.3.0 (Unreleased)
+
+* Add `themes` mixin to output theme style rules on the global level
+
 # 0.2.0 (2013-07-19)
 
 * Add unit tests

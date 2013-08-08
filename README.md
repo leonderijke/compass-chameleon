@@ -79,6 +79,34 @@ In your HTML you'd add the theme name class to the `body` element to theme an en
 
 Chameleon comes with a number of mixins for your theming pleasures:
 
+### `themes`
+
+Adds a *global* style rule for each theme, containing the themed properties.  Takes one or more CSS properties. Useful to set up theme classes that have styling themselves. Note: If you specify more properties than available colors for a theme, only the available property color pairs will be output.
+
+Usage:
+
+```scss
+$themes: ("red",   (#FF0000, #F13333)),
+         ("green", (#00FF00)),
+         ("blue",  (#0000FF, #3333F1));
+
+@include themed(background-color);
+```
+
+Output:
+
+```css
+.red {
+  background-color: red;
+}
+.green {
+  background-color: lime;
+}
+.blue {
+  background-color: blue;
+}
+```
+
 ### `themed`
 
 Adds a style rule for *each* theme, containing the themed properties. Takes one or more CSS properties. Note: If you specify more properties than available colors for a theme, only the available property color pairs will be output.
@@ -114,7 +142,7 @@ Output:
 
 ### `properties-for-theme`
 
-Adds a style rule for the *given* theme, containing the themed properties. Takes a theme and one or more properties (remember, a theme is a list of a name and a list of colors). Useful for those situations where only one theme is different. Use in conjunction with the `get-theme-by-name` function.
+Adds a style rule for the *given* theme, containing the themed properties. Takes a theme, one or more properties (remember, a theme is a list of a name and a list of colors) and optionally whether to output the stye rule on the global level (without the parent selector) or not (default it will output *with* the parent selector). Useful for those situations where only one theme is different. Use in conjunction with the `get-theme-by-name` function.
 
 Usage:
 
