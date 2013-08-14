@@ -32,12 +32,11 @@
 //
 @mixin properties-for-theme($theme, $properties, $global: false) {
 	$theme-name: fail-safe-nth($theme, 1);
-	$theme-colors: fail-safe-nth($theme, 2);
 
 	.#{$theme-name} #{if($global, '', '&')} {
 		@for $i from 1 through length($properties) {
-			@if fail-safe-nth($theme-colors, $i) != null {
-				#{nth($properties, $i)}: fail-safe-nth($theme-colors, $i);
+			@if theme-color($theme, $i) != null {
+				#{nth($properties, $i)}: theme-color($theme, $i);
 			}
 		}
 	}
