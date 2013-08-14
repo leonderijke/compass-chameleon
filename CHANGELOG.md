@@ -1,3 +1,7 @@
+# 0.4.0 (Unreleased)
+
+* Add possibility to skip colors in order to make non-symmetric property-color pairs
+
 # 0.3.0 (2013-08-08)
 
 * Add `themes` mixin to output theme style rules on the global level

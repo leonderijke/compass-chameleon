@@ -35,7 +35,7 @@
 
 	.#{$theme-name} #{if($global, '', '&')} {
 		@for $i from 1 through length($properties) {
-			@if theme-color($theme, $i) != null {
+			@if nth($properties, $i) != null and theme-color($theme, $i) != null {
 				#{nth($properties, $i)}: theme-color($theme, $i);
 			}
 		}

@@ -144,6 +144,8 @@ Output:
 
 Adds a style rule for the *given* theme, containing the themed properties. Takes a theme, one or more properties (remember, a theme is a list of a name and a list of colors) and optionally whether to output the stye rule on the global level (without the parent selector) or not (default it will output *with* the parent selector). Useful for those situations where only one theme is different. Use in conjunction with the `get-theme-by-name` function.
 
+Note that by passing `null` as a property you can skip the respective color in order to reach a specific color. For example, if you want to pass the primary color to `background-color` and the tertiary color to `border-color` you would pass in these properties: `background-color, null, border-color`.
+
 Usage:
 
 ```scss
